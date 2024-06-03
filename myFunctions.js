@@ -38,32 +38,32 @@ $(document).ready(function () {
         var nationalID = $('#nationalID').val();
         var regexNationalID = /^(0[1-9]|1[0-4])[0-9]{9}$/;
         if (!regexNationalID.test(nationalID)) {
-            errorMsg += "Invalid National ID. It must start with numbers between 01-14 followed by 9 digits.\n";
+            errorMsg += "الرقم الوطني غير صالح. يجب أن يبدأ بالأرقام بين 01-14 متبوعاً بـ 9 أرقام.\n";
             isValid = false;
         }
 
         // Validate other fields only if they are not empty
         var fullName = $('#fullName').val();
         if (fullName && !/^[أ-ي\s]+$/.test(fullName)) {
-            errorMsg += "Invalid Full Name. Please enter Arabic letters and spaces only.\n";
+            errorMsg += "الاسم المدخل غير صالح. يجب استخدام الأحرف العربية والمسافات فقط.\n";
             isValid = false;
         }
 
         var dob = $('#dob').val();
         if (dob && !/^\d{2}-\d{2}-\d{4}$/.test(dob)) {
-            errorMsg += "Invalid Date of Birth. Please enter the date in dd-mm-yyyy format.\n";
+            errorMsg += "تاريخ ميلاد غير صالح. يرجى إدخال التاريخ بالتنسيق التالي dd-mm-yyyy.\n";
             isValid = false;
         }
 
         var mobile = $('#mobile').val();
         if (mobile && !/^09[^12]\d{7}$/.test(mobile)) {
-            errorMsg += "Invalid Mobile Number. It should start with 09 and followed by 8 digits, excluding 09[12]xx.\n";
+            errorMsg += "رقم الجوال غير صالح. يجب أن يبدأ بـ 09 ويتبعه 8 أرقام.\n";
             isValid = false;
         }
 
         var email = $('#email').val();
         if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            errorMsg += "Invalid Email Address.\n";
+            errorMsg += "البريد الالكتروني المدخل غير صالح.\n";
             isValid = false;
         }
 
@@ -80,7 +80,7 @@ $(document).ready(function () {
         if ($('input[type="radio"]:checked').length > 0) {
             $('#formContainer').fadeIn();
         } else {
-            alert('Please select a property first.');
+            alert('يرجى اختيار عقار أولاً.');
         }
     });
 
@@ -106,12 +106,12 @@ $(document).ready(function () {
                 var selectedDetails = $('input[type="radio"]:checked').closest("tr").next("tr.hidden").find("ul li").map(function () {
                     return $(this).text();
                 }).get().join('\n');
-                alert('Form submitted successfully! \nProperty details:\n' + selectedDetails);
+                alert('تم حجز العقار بنجاح! \nتفاصيل العقار:\n' + selectedDetails);
                 $('#formContainer').fadeOut();
                 $('#captchaInput').val('');
                 refreshCaptcha(); // Refresh CAPTCHA
             } else {
-                alert('Incorrect CAPTCHA. Please try again.');
+                alert('رمز التحقق غير صحيح. حاول مرة أخرى.');
                 $('#captchaInput').val(''); // Clear the captcha input for retry
                 refreshCaptcha(); // Refresh the CAPTCHA
                 
